@@ -1,15 +1,12 @@
-package sun.Model;
+package sun.model;
 
 public class Employee {
-	//TODO implement model for employee
-	
+		
 	private String name;
 	private String surname;
 	private String email;
 	private String idEmployee;
 	
-	
-	//gets and sets methods
 	public String getName() {
 		return name;
 	}

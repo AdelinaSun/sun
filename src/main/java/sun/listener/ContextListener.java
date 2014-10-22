@@ -1,10 +1,10 @@
-package sun.Listener;
+package sun.listener;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import sun.Repository.EmployeeRepositorySingleton;
+import sun.repository.EmployeeRepositorySingleton;
 
 /**
  * Application Lifecycle Listener implementation class ContextListener

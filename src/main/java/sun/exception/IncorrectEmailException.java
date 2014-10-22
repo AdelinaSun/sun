@@ -1,6 +1,7 @@
-package sun.Exception;
+package sun.exception;
 
-import sun.Exception.ServletException;
+import sun.exception.ServletException;
+
 
 public class IncorrectEmailException extends ServletException {
 

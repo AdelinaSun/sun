@@ -36,7 +36,7 @@
 
 <div class="errMsg">
 	<c:out value="${errMsg}" />
-</div>
+
 <div class="empTable">
 	<c:choose>
 		<c:when test="${empty applicationScope.employees}">
@@ -47,6 +47,11 @@
 		
 		<c:otherwise>
 			<table>
+			
+			<td><c:out value="Name"></c:out></td>
+						<td><c:out value="Surname"></c:out></td>
+						<td><c:out value="E-mail"></c:out></td>
+						
 				<c:forEach var="employee" items="${applicationScope.employees}">
 					<tr>
 						<td><c:out value="${employee.name}"></c:out></td>
@@ -64,6 +69,6 @@
 	<!--<h2>Hello World!</h2>
 <c:out value="Hello again"></c:out>-->
 
-</div>
+</div> </div>
 </body>
 </html>
