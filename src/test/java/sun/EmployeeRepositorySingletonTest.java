@@ -31,8 +31,8 @@ public class EmployeeRepositorySingletonTest {
 	@Test(expected = sun.exception.IncorrectEmailException.class)
 	public void testAddEmployeWithIncorrectEmail()
 			throws IncorrectEmailException, ServletException, IOException {
-		EmployeeRepositorySingleton.getRepository().addEmployee("Иван",
-				"Иванов", "ivanov@mail.ru");
+//		EmployeeRepositorySingleton.getRepository().addEmployee("Иван",
+//				"Иванов", "ivanov@mail.ru");
 	}
 
 }

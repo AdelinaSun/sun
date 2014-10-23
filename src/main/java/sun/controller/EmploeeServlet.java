@@ -1,6 +1,7 @@
 package sun.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sun.database.DataBase;
 import sun.exception.IncorrectEmailException;
 import sun.repository.EmployeeRepositorySingleton;
 
@@ -19,20 +21,24 @@ public class EmploeeServlet extends HttpServlet {
 			HttpServletResponse response) throws IOException, ServletException {
 		getServletContext().getRequestDispatcher("/index.jsp").forward(request,
 				response);
-		request.setAttribute("employees", EmployeeRepositorySingleton
-				.getRepository().getAllEmployees());
+		try {
+			request.setAttribute("employees", DataBase.getDatabase().getDataFromDb());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
-
+		
 		try {
 			EmployeeRepositorySingleton.getRepository().addEmployee(
 					request.getParameter("name"),
 					request.getParameter("surname"),
 					request.getParameter("mail"));
-		} catch (ServletException | IncorrectEmailException e) {
+		} catch (ServletException | IncorrectEmailException | SQLException e) {
 			request.setAttribute("errMsg", e);
 		}
 		doGet(request, response);

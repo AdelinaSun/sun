@@ -5,7 +5,7 @@ public class Employee {
 	private String name;
 	private String surname;
 	private String email;
-	private String idEmployee;
+	private int idEmployee;
 	
 	public String getName() {
 		return name;
@@ -25,11 +25,11 @@ public class Employee {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getIdEmployee() {
+	public int getIdEmployee() {
 		return idEmployee;
 	}
-	public void setIdEmployee(String idEmployee) {
-		this.idEmployee = idEmployee;
+	public void setIdEmployee(int id) {
+		this.idEmployee = id;
 	}
 	
 	

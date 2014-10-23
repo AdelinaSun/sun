@@ -1,11 +1,13 @@
 package sun.repository;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
 
+import sun.database.DataBase;
 import sun.exception.IncorrectEmailException;
 import sun.model.Employee;
 
@@ -32,7 +34,7 @@ public class EmployeeRepositorySingleton {
 	}
 
 	public void addEmployee(String fname, String lname, String email)
-			throws IncorrectEmailException, ServletException, IOException {
+			throws IncorrectEmailException, ServletException, IOException, SQLException {
 		Employee employee = new Employee();
 		employee.setName(fname);
 		employee.setSurname(lname);
@@ -54,6 +56,9 @@ public class EmployeeRepositorySingleton {
 		}
 
 		this.listEmployee.add(employee);
+		employee.setIdEmployee(this.listEmployee.size());
+		DataBase.getDatabase().setIdEmployee(this.listEmployee.size());
+		DataBase.getDatabase().addDataToDb(employee);
 
 	}
 
