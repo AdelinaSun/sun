@@ -1,6 +1,5 @@
 package sun.database;
 
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -62,12 +61,18 @@ public class DataBase {
 		try {
 			connection = getConnection();
 			statement = connection.createStatement();
+			
+			String selectIdSQL = "SELECT max(EMPLOYEE_ID) from EMPLOYEES";
+			ResultSet resultSet = statement.executeQuery(selectIdSQL);
+			resultSet.next();
+			this.idEmployee = resultSet.getInt("max(EMPLOYEE_ID)") + 1;
+
 			// SQL запрос
 			String insertData = "INSERT INTO EMPLOYEES "
 					+ "(EMPLOYEE_ID, NAME, SURNAME, EMAIL) " + "VALUES" + "("
-					+ employee.getIdEmployee() + ",'" + employee.getName()
-					+ "','" + employee.getSurname() + "','"
-					+ employee.getEmail() + "')";
+					+ this.idEmployee + ",'" + employee.getName() + "','"
+					+ employee.getSurname() + "','" + employee.getEmail()
+					+ "')";
 			statement.executeUpdate(insertData);
 
 		} catch (SQLException e) {
@@ -86,7 +91,7 @@ public class DataBase {
 		ArrayList<Employee> dbEmployee = new ArrayList<>();
 		Connection connection = null;
 		Statement statement = null;
-		String selectTableSQL = "SELECT ID, NAME, SURNAME, EMAIL from EMPLOYEES";
+		String selectTableSQL = "SELECT EMPLOYEE_ID, NAME, SURNAME, EMAIL from EMPLOYEES order by EMPLOYEE_ID";
 
 		try {
 			connection = getConnection();

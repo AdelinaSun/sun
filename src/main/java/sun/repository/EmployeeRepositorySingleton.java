@@ -15,12 +15,6 @@ public class EmployeeRepositorySingleton {
 	private static EmployeeRepositorySingleton instance;
 	private List<Employee> listEmployee = new ArrayList<>();
 
-	/*
-	 * public EmployeeRepositorySingleton() { Employee employee = new
-	 * Employee(); employee.setName("Name"); employee.setSurname("Surname");
-	 * employee.setEmail("E-mail"); this.listEmployee.add(employee); }
-	 */
-
 	public static EmployeeRepositorySingleton getRepository() {
 
 		if (instance == null) {
@@ -34,7 +28,9 @@ public class EmployeeRepositorySingleton {
 	}
 
 	public void addEmployee(String fname, String lname, String email)
-			throws IncorrectEmailException, ServletException, IOException, SQLException {
+			throws IncorrectEmailException, ServletException, IOException,
+			SQLException {
+
 		Employee employee = new Employee();
 		employee.setName(fname);
 		employee.setSurname(lname);
@@ -55,14 +51,23 @@ public class EmployeeRepositorySingleton {
 			}
 		}
 
-		this.listEmployee.add(employee);
-		employee.setIdEmployee(this.listEmployee.size());
-		DataBase.getDatabase().setIdEmployee(this.listEmployee.size());
 		DataBase.getDatabase().addDataToDb(employee);
+		// this.listEmployee.add(employee);
 
 	}
 
-	public List<Employee> getAllEmployees() {
+	public void addEmployee2(String fname, String lname, String email)
+			throws IncorrectEmailException, ServletException, IOException,
+			SQLException {
+		if (this.listEmployee.size() == 0) {
+			listEmployee.addAll(DataBase.getDatabase().getDataFromDb());
+			this.addEmployee(fname, lname, email);
+		} else {
+			this.addEmployee(fname, lname, email);
+		}
+	}
+
+	public List<Employee> getAllEmployees() throws SQLException {
 		return this.listEmployee;
 	}
 }
