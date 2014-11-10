@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="CSS/style.css">
 </head>
 
-<form action="another-servlet.html" method="post">
+<form method="POST" modelAttribute="employee">
 	<fieldset>
 		<table>
 			<tr>

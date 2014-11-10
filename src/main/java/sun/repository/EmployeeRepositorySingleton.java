@@ -27,6 +27,7 @@ public class EmployeeRepositorySingleton {
 		return instance;
 	}
 
+	//public void addEmployee(Employee employee)
 	public void addEmployee(String fname, String lname, String email)
 			throws IncorrectEmailException, ServletException, IOException,
 			SQLException {
@@ -56,7 +57,7 @@ public class EmployeeRepositorySingleton {
 
 	}
 
-	public void addEmployee2(String fname, String lname, String email)
+	/*public void addEmployee2(String fname, String lname, String email)
 			throws IncorrectEmailException, ServletException, IOException,
 			SQLException {
 		if (this.listEmployee.size() == 0) {
@@ -65,7 +66,7 @@ public class EmployeeRepositorySingleton {
 		} else {
 			this.addEmployee(fname, lname, email);
 		}
-	}
+	}*/
 
 	public List<Employee> getAllEmployees() throws SQLException {
 		return this.listEmployee;

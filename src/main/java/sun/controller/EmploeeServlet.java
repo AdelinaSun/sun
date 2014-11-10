@@ -13,9 +13,9 @@ import sun.database.DataBase;
 import sun.exception.IncorrectEmailException;
 import sun.repository.EmployeeRepositorySingleton;
 
-@WebServlet("/another-servlet.html")
+//@WebServlet("/another-servlet.html")
 public class EmploeeServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	/*private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
@@ -49,6 +49,6 @@ public class EmploeeServlet extends HttpServlet {
 			request.setAttribute("errMsg", e);
 		}
 		doGet(request, response);
-	}
+	}*/
 
 }

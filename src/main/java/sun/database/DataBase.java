@@ -69,7 +69,7 @@ public class DataBase {
 
 			// SQL запрос
 			String insertData = "INSERT INTO EMPLOYEES "
-					+ "(EMPLOYEE_ID, NAME, SURNAME, EMAIL) " + "VALUES" + "("
+					+ "(EMPLOYEE_ID, NAME, SURNAME, EMAIL)" + "VALUES" + "("
 					+ this.idEmployee + ",'" + employee.getName() + "','"
 					+ employee.getSurname() + "','" + employee.getEmail()
 					+ "')";

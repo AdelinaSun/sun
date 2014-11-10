@@ -15,8 +15,8 @@ public class EmployeeRepositorySingletonTest {
 
 	@BeforeClass
 	public static void beforeClass() throws Exception {
-		EmployeeRepositorySingleton.getRepository().addEmployee("Иван",
-				"Иванов", "ivanov@mail.ru");
+		//EmployeeRepositorySingleton.getRepository().addEmployee("Иван",
+			//	"Иванов", "ivanov@mail.ru");
 	}
 
 	@Test
