@@ -2,11 +2,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	
 http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/context 
 http://www.springframework.org/schema/context/spring-context.xsd 
 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+	<context:mbean-export />
 	<context:component-scan base-package="sun.controller" />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:annotation-driven />
@@ -15,7 +17,24 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/webapp/" />
+		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+
+	<!-- Initialization for data source -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
+		<property name="username" value="Inna" />
+		<property name="password" value="inna02" />
+	</bean>
+
+	<!-- Definition for emploeeJDBCTemplate bean -->
+	<bean id="employeeJDBCTemplate" class="sun.database.EmployeeJDBCTemplate">
+	</bean>
+	
+	<bean id="jdbcTemplateObject" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg ref="dataSource" />
+    </bean>
 </beans>

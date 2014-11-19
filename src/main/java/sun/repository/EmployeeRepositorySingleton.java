@@ -7,14 +7,21 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import sun.database.DataBase;
+import sun.database.EmployeeJDBCTemplate;
 import sun.exception.IncorrectEmailException;
 import sun.model.Employee;
 
 public class EmployeeRepositorySingleton {
 	private static EmployeeRepositorySingleton instance;
 	private List<Employee> listEmployee = new ArrayList<>();
-
+	@Autowired
+	private EmployeeJDBCTemplate employeeJDBCTemplate;
+	//@Autowired
+	//private Employee employee;
+	
 	public static EmployeeRepositorySingleton getRepository() {
 
 		if (instance == null) {
@@ -28,31 +35,32 @@ public class EmployeeRepositorySingleton {
 	}
 
 	//public void addEmployee(Employee employee)
-	public void addEmployee(String fname, String lname, String email)
+	public void addEmployee(Employee employee)
 			throws IncorrectEmailException, ServletException, IOException,
 			SQLException {
-
-		Employee employee = new Employee();
+		
+		
+		/*Employee employee = new Employee();
 		employee.setName(fname);
 		employee.setSurname(lname);
-		employee.setEmail(email);
+		employee.setEmail(email);*/
 
 		if (employee.getName().equals("") || employee.getSurname().equals("")
-				|| employee.getEmail().equals("")) {
-			throw new ServletException("Р—Р°РїРѕР»РЅРёС‚Рµ РІСЃРµ РїРѕР»СЏ");
+				|| employee.getMail().equals("")) {
+			throw new ServletException("Заполните все поля");
 		}
 
 		if (!employee.getName().equals("") & !employee.getSurname().equals("")
-				& !employee.getEmail().equals("")) {
+				& !employee.getMail().equals("")) {
 			for (Employee employeeElement : this.listEmployee) {
-				if (employeeElement.getEmail().equals(employee.getEmail())) {
+				if (employeeElement.getMail().equals(employee.getMail())) {
 					throw new IncorrectEmailException(
-							"Р­С‚РѕС‚ СЌР»РµРєС‚СЂРѕРЅРЅС‹Р№ Р°РґСЂРµСЃ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚.");
+							"Этот электронный адрес уже существует.");
 				}
 			}
 		}
-
-		DataBase.getDatabase().addDataToDb(employee);
+		//employeeJDBCTemplate.addDataToDb(employee);
+		//DataBase.getDatabase().addDataToDb(employee);
 		// this.listEmployee.add(employee);
 
 	}

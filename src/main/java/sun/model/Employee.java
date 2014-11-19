@@ -4,7 +4,7 @@ public class Employee {
 		
 	private String name;
 	private String surname;
-	private String email;
+	private String mail;
 	private int idEmployee;
 	
 	public String getName() {
@@ -19,11 +19,11 @@ public class Employee {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-	public String getEmail() {
-		return email;
+	public String getMail() {
+		return mail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 	public int getIdEmployee() {
 		return idEmployee;
